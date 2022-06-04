@@ -1,6 +1,8 @@
 local player = require "bird"
 require("pipe")
 
+round = 0
+
 function deep_copy(v)
   assert(type(v), "table")
   local u = {}
@@ -35,6 +37,8 @@ function love.update(dt)
   pipe2:update(dt)
   if CheckCollision(player, pipe1) or CheckCollision(player, pipe2) then
     print("Collision!!")
+    round = round + 1
+    love.load()
   end
 end
 
@@ -47,4 +51,7 @@ function love.draw()
   player:draw()
   pipe1:draw()
   pipe2:draw()
+  love.graphics.setColor(1, 1, 1, 1)
+  love.graphics.setFont(love.graphics.newFont(30))
+  love.graphics.print("Round: "..round, 50, 50)
 end
