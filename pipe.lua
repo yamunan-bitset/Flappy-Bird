@@ -5,7 +5,7 @@ function Pipe:load(x, y, width, height)
   self.y = y
   self.width = width
   self.height = height
-  self.vel = -50
+  self.vel = -100
 end
 
 function Pipe:update(dt)

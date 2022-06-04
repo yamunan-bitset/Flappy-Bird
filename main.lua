@@ -11,6 +11,16 @@ function deep_copy(v)
   return u
 end
 
+function CheckCollision(a, b)
+  assert(type(a), "table")
+  assert(type(b), "table")
+  if a.x + a.width > b.x and a.x < b.x + b.width and a.y + a.height > b.y and a.y < b.y + b.height then
+    return true
+  else
+    return false
+  end
+end
+
 function love.load()
   pipe1 = deep_copy(Pipe)
   pipe2 = deep_copy(Pipe)
@@ -23,6 +33,9 @@ function love.update(dt)
   player:update(dt)
   pipe1:update(dt)
   pipe2:update(dt)
+  if CheckCollision(player, pipe1) or CheckCollision(player, pipe2) then
+    print("Collision!!")
+  end
 end
 
 function love.keypressed(key)
